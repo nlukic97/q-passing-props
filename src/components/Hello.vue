@@ -18,7 +18,7 @@ export default {
     }
   },
 
-  watch: {
+  watch: { //solution
     helloDisplay: function () {
       this.displayProp= this.helloDisplay
 
