@@ -1,8 +1,19 @@
 <template>
   <div id="app">
-    <div id="nav">      
-    <router-view/>
-    </div>
+    <v-container>
+      <v-row>
+        <v-col cols="12">
+          <div id="nav">      
+            <router-view/>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="4">E</v-col>
+        <v-col cols="4">E</v-col>
+        <v-col cols="4">E</v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
@@ -11,7 +22,7 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  // text-align: center;
   color: #2c3e50;
 }
 
