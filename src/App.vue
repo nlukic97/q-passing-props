@@ -44,21 +44,37 @@ export default {
   name: 'app',
   data(){
     return {
-      items: null
+      items: null,
+      text: null
     }
   },
   methods: {
     getData: function(){
       axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
       .then(response=>{
-        this.items = response.data.bpi
+        this.items =  response.data.bpi
         console.log(this.items)
       })
-      .catch()
+      .catch(err=>{
+        console.log('Your request could not be processed. ' + err)
+      })
+    },
+
+    //ovo ovde ne radi
+    getString: function(){
+      axios.get('data.php')
+      .then(response=>{
+        this.text =  JSON.parse(response)
+        console.log(this.text)
+      })
+      .catch(err=>{
+        console.log('String request could not be processed. ' + err)
+      })
     }
   },
   mounted(){
     this.getData()
+    this.getString()
   }
 }
 </script>
