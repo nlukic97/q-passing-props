@@ -1,19 +1,17 @@
 <template>
   <div id="app">
-    <v-container>
-      <v-row>
-        <v-col cols="12">
-          <div id="nav">      
-            <router-view/>
-          </div>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols="4">E</v-col>
-        <v-col cols="4">E</v-col>
-        <v-col cols="4">E</v-col>
-      </v-row>
-    </v-container>
+    <div id="nav">      
+      <router-view/>
+    </div>
+    <ul>
+      <li v-for="(currency, index) in items" :key="index">
+        <h1>{{index}}</h1>
+        <p>Symbol: {{currency.symbol}}</p>
+        <p>rate: {{currency.rate}}</p>
+        <p>rate_float: {{currency.rate_float}}</p>
+        <p>--------------------------------------------</p>
+      </li>
+    </ul>   
   </div>
 </template>
 
@@ -22,7 +20,7 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  // text-align: center;
+  text-align: center;
   color: #2c3e50;
 }
 
@@ -39,3 +37,28 @@
   }
 }
 </style>
+<script>
+import axios from 'axios';
+
+export default {
+  name: 'app',
+  data(){
+    return {
+      items: null
+    }
+  },
+  methods: {
+    getData: function(){
+      axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+      .then(response=>{
+        this.items = response.data.bpi
+        console.log(this.items)
+      })
+      .catch()
+    }
+  },
+  mounted(){
+    this.getData()
+  }
+}
+</script>
